@@ -1,11 +1,5 @@
 -- This is an SQL script that creates a users table with three (3) fields
 -- It should not fail when the table already exists
-
-
-CREATE SCHEMA IF NOT EXISTS `holberton`;
-
-USE `holberton`;
-
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE IF NOT EXISTS `users`(
