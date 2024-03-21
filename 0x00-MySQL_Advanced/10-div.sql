@@ -8,7 +8,7 @@ BEGIN
 
     IF b <> 0 THEN
         SET result = a / b;
-    END IF
+    END IF;
     RETURN result;
 END;
 //
