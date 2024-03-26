@@ -1,0 +1,5 @@
+// This is a MongoDB script to update a document that matches a search pattern in a collection
+db.school.update({ "name" : "Holberton school" },
+    {"$set": {"address" : "972 Mission street"}},
+    {multi: true}
+);

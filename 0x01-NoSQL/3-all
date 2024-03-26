@@ -1,0 +1,2 @@
+// This is a MongoDB script to List all documents in the schools collections
+db.school.find().forEach(printjson);

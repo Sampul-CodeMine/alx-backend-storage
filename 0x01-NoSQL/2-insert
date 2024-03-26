@@ -1,0 +1,2 @@
+// This is a MongoDB script to insert a document into the school collection in the my_db database
+db.school.insert({ "name" : "Holberton school" });
