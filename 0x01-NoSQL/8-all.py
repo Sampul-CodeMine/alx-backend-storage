@@ -10,4 +10,4 @@ def list_all(mongo_collection):
     This is a method that list all documents in a collection
     using python's pymongo library (python and mongodb)
     """
-    return [doc for doc in mongo_collection.find() if mongo_collection]
+    return [doc for doc in mongo_collection.find()]
