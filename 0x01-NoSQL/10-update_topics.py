@@ -5,7 +5,7 @@ based on the name using pymongo
 """
 
 
-def update_topics(mongo_collection, name, topics):
+def update_topics(mongo_collection, name: str, topics):
     """
     This is a method that updates documents in a collection
     using python's pymongo library (python and mongodb) based on the search

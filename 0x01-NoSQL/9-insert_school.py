@@ -5,7 +5,7 @@ using pymongo
 """
 
 
-def insert_school(mongo_collection, **details):
+def insert_school(mongo_collection, **details: dict):
     """
     This is a method that inserts a document into a collection
     using python's pymongo library (python and mongodb)
