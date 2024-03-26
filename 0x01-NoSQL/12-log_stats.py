@@ -4,7 +4,7 @@ Module for Task 12"""
 from pymongo import MongoClient
 
 
-ALLOWED_METHODS = ['DELETE', 'GET', 'PATCH', 'POST', 'PUT']
+ALLOWED_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 
 
 def log_nginx_stats(mongo_collection, option=None):
