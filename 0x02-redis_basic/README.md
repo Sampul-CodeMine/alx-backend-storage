@@ -1,7 +1,7 @@
 # 0x02. Redis Basics
 
 <p align="center" style="width: 150px;">
-    <img src="" alt="Redis Concept - Change my mind" />
+    <img src="https://github.com/Sampul-CodeMine/alx-backend-storage/blob/main/0x02-redis_basic/redis_img_concept/redis_concept.png" alt="Redis Concept - Change my mind" />
 </p>
 
 ## Resources
