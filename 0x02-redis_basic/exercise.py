@@ -4,7 +4,7 @@ This is a simple module to practise projects on how to use redis
 for caching and to use the redis client in python
 """
 from redis import Redis
-from uuid import uuid as uid
+import uuid as uid
 from typing import Union, Callable, Optional
 
 
