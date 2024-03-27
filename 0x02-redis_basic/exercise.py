@@ -23,6 +23,27 @@ def count_calls(method: Callable) -> Callable:
     return incr_func
 
 
+def call_history(method: Callable) -> Callable:
+    """
+    This is a method that tracks the call details of a method in Cache class
+    """
+    @wraps(method)
+    def setter(self, *args, **kwargs) -> any:
+        """
+        This method returns the method's output after storing its
+        inputs and output.
+        """
+        in_key = '{}:inputs'.format(method.__qualname__)
+        out_key = '{}:outputs'.format(method.__qualname__)
+        if isinstance(self._redis, Redis):
+            self._redis.rpush(in_key, str(args))
+        output = method(self, *args, **kwargs)
+        if isinstance(self._redis, Redis):
+            self._redis.rpush(out_key, output)
+        return output
+    return setter
+
+
 class Cache:
     """
     This is a class to implement caching using redis
@@ -32,6 +53,7 @@ class Cache:
         self._redis = Redis()
         self._redis.flushdb(True)
 
+    @call_history
     @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """
