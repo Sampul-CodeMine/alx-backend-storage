@@ -44,6 +44,26 @@ def call_history(method: Callable) -> Callable:
     return setter
 
 
+def replay(fn: Callable):
+    """
+    This is a method that replays a function a bunch of times
+
+    Args:
+        fn (Callable): The callback function
+    """
+    cache_mem = Redis()
+    func_name_qual = fn.__qualname__
+    value = int(cache_mem.get(func_name_qual) or b"0")
+    print(f"{func_name_qual} was called {value} times:")
+    inputs = cache_mem.lrange(f"{func_name_qual}:inputs", 0, -1)
+    outputs = cache_mem.lrange(f"{func_name_qual}:outputs", 0, -1)
+
+    for input_bytes, output_bytes in zip(inputs, outputs):
+        input_string = input_bytes.decode("utf-8")
+        output_string = output_bytes.decode("utf-8")
+        print(f"{func_name_qual}(*{input_string}) -> {output_string}")
+
+
 class Cache:
     """
     This is a class to implement caching using redis
