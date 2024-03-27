@@ -6,6 +6,21 @@ for caching and to use the redis client in python
 from redis import Redis
 import uuid as uid
 from typing import Union, Callable, Optional
+from functools import wraps
+
+
+def count_calls(method: Callable) -> Callable:
+    """
+    This is a decorator function that takes a callable and returns a Callable
+    """
+    key = method.__qualname__
+
+    @wraps(method)
+    def incr_func(self, *args, **kwargs):
+        """increments the count for the key """
+        self._redis.incr(key)
+        return method(self, *args, **kwargs)
+    return incr_func
 
 
 class Cache:
@@ -17,6 +32,7 @@ class Cache:
         self._redis = Redis()
         self._redis.flushdb(True)
 
+    @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         This is a method that stores data using a random key generated
